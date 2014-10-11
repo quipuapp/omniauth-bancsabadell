@@ -41,6 +41,9 @@ gem 'spring',        group: :development
 gem 'thin'
 gem 'slim-rails'
 
+gem 'byebug'
+
+gem 'omniauth'
 gem 'omniauth-bancsabadell', path: '..'
 
 gem 'quiet_assets'
