@@ -11,6 +11,10 @@ module OmniAuth
         token_url: 'https://developers.bancsabadell.com/AuthServerBS/oauth/token'
       }
 
+      def request_phase
+        super
+      end
+
       def authorize_params
         super.merge({
           response_type: :code,

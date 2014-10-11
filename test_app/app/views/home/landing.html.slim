@@ -1,3 +1,6 @@
 h1 Hi there!
 
-= link_to 'Sign in with BancSabadell', '/auth/bancsabadell'
+- if session[:token].present?
+  | You are logged in. YEAH, BITCH!
+- else
+  = link_to 'Sign in with BancSabadell', '/auth/bancsabadell'
