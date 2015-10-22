@@ -11,6 +11,10 @@ module OmniAuth
         token_url: 'https://developers.bancsabadell.com/AuthServerBS/oauth/token'
       }
 
+      def callback_url
+        full_host + script_name + callback_path # + query_string
+      end
+
       def request_phase
         super
       end
