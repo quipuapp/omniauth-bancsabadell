@@ -1,4 +1,4 @@
-silence_warnings { OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE if Rails.env.development? }
+silence_warnings { OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE if(Rails.env.development? || Rails.env.staging?)}
 
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :bancsabadell,
