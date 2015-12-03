@@ -3,13 +3,27 @@ require 'omniauth/strategies/oauth2'
 module OmniAuth
   module Strategies
     class Bancsabadell < OmniAuth::Strategies::OAuth2
-      API_BS_HOST = 'https://developers.bancsabadell.com'
+      API_BS_HOST = 'https://oauth.bancsabadell.com'
+      API_BS_SANDBOX_HOST = 'https://developers.bancsabadell.com'
 
-      option :client_options, {
-        site: 'https://developers.bancsabadell.com',
-        authorize_url: 'https://developers.bancsabadell.com/AuthServerBS/oauth/authorize',
-        token_url: 'https://developers.bancsabadell.com/AuthServerBS/oauth/token'
+     option :client_options, {
+        site: API_BS_HOST,
+        authorize_url: "#{API_BS_HOST}/AuthServerBS/oauth/authorize",
+        token_url: "#{API_BS_HOST}/AuthServerBS/oauth/token",
+        setup: true
       }
+
+      option :sandbox, false
+
+      def setup_phase
+        if options.sandbox
+          options.client_options[:site] = SANDBOX_SITE
+          options.client_options[:authorize_url] = "#{API_BS_SANDBOX_HOST}/AuthServerBS/oauth/authorize"
+          options.client_options[:token_url] = "#{API_BS_SANDBOX_HOST}/AuthServerBS/oauth/token"
+        end
+
+        super
+      end
 
       def callback_url
         full_host + script_name + callback_path # + query_string
