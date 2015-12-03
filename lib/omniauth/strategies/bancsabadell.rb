@@ -17,7 +17,7 @@ module OmniAuth
 
       def setup_phase
         if options.sandbox
-          options.client_options[:site] = SANDBOX_SITE
+          options.client_options[:site] = API_BS_SANDBOX_HOST
           options.client_options[:authorize_url] = "#{API_BS_SANDBOX_HOST}/AuthServerBS/oauth/authorize"
           options.client_options[:token_url] = "#{API_BS_SANDBOX_HOST}/AuthServerBS/oauth/token"
         end
