@@ -24,7 +24,7 @@ module OmniAuth
         super.merge({
           response_type: :code,
           client_id: options.client_id,
-          scope: "read write"
+          scope: "read"
         })
       end
     end
