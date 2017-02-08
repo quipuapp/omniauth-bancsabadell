@@ -3,12 +3,18 @@ require 'omniauth/strategies/oauth2'
 module OmniAuth
   module Strategies
     class Bancsabadell < OmniAuth::Strategies::OAuth2
-      API_BS_HOST = 'https://oauth.bancsabadell.com'
+      def self.api_host
+        @api_host ||= if %w(development staging).include?(ENV['RAILS_ENV'])
+                        'https://developers.bancsabadell.com'
+                      else
+                        'https://oauth.bancsabadell.com'
+                      end
+      end
 
-     option :client_options, {
-        site: API_BS_HOST,
-        authorize_url: "#{API_BS_HOST}/AuthServerBS/oauth/authorize",
-        token_url: "#{API_BS_HOST}/AuthServerBS/oauth/token",
+      option :client_options, {
+        site: api_host,
+        authorize_url: "#{api_host}/AuthServerBS/oauth/authorize",
+        token_url: "#{api_host}/AuthServerBS/oauth/token",
         setup: true
       }
 
